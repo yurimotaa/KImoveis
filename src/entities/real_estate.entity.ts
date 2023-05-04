@@ -5,13 +5,13 @@ import {
   JoinColumn,
   JoinTable,
   ManyToMany,
-  ManyToOne,
-  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Address, Category, Schedule } from "../entities";
+import Address from "./adresses.entity";
+import Category from "./categories.entity";
+import Schedule from "./schedules.entity";
 
 @Entity("real_estate")
 class RealEstate {

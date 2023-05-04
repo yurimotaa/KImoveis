@@ -1,13 +1,13 @@
 import {
   Column,
   Entity,
-  JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { RealEstate, User } from "../entities";
+import RealEstate from "./real_estate.entity";
+import User from "./users.entity";
 
 @Entity("schedules")
 class Schedule {
@@ -24,7 +24,7 @@ class Schedule {
   @JoinTable()
   realEstates: RealEstate[];
 
-  @ManyToMany(() => User)
+  @ManyToOne(() => User, (users) => users.schedules)
   user: User;
 }
 

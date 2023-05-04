@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Schedule } from "../entities";
+import Schedule from "./schedules.entity";
 
 @Entity("users")
 class User {

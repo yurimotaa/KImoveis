@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Address, RealEstate, Schedule } from "../entities";
+import RealEstate from "../entities/real_estate.entity";
 
 @Entity("categories")
 class Category {
