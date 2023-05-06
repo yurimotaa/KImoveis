@@ -4,7 +4,8 @@ import {
   Entity,
   JoinColumn,
   JoinTable,
-  ManyToMany,
+  ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -22,7 +23,7 @@ class RealEstate {
   sold: boolean;
 
   @Column({ type: "decimal", precision: 12, scale: 2, default: 0 })
-  value: number;
+  value: number | string;
 
   @Column({ type: "integer" })
   size: number;
@@ -37,11 +38,10 @@ class RealEstate {
   @JoinColumn()
   address: Address;
 
-  @ManyToMany(() => Category, (category) => category.realEstates)
-  @JoinTable()
-  category: Category[];
+  @ManyToOne(() => Category, (category) => category.realEstates)
+  category: Category;
 
-  @ManyToMany(() => Schedule, (schedule) => schedule.realEstates)
+  @OneToMany(() => Schedule, (schedule) => schedule.realEstates)
   schedules: Schedule[];
 }
 

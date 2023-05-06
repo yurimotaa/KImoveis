@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import RealEstate from "../entities/real_estate.entity";
 
 @Entity("categories")
@@ -9,7 +9,7 @@ class Category {
   @Column({ type: "varchar", length: 45, unique: true })
   name: string;
 
-  @ManyToMany(() => RealEstate, (realEstate) => realEstate.category)
+  @OneToMany(() => RealEstate, (realEstate) => realEstate.category)
   realEstates: RealEstate[];
 }
 

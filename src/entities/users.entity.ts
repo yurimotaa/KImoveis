@@ -24,7 +24,7 @@ class User {
   password: string;
 
   @Column({ type: "boolean", default: false })
-  admin: boolean;
+  admin?: boolean | undefined;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -33,7 +33,7 @@ class User {
   updatedAt: Date;
 
   @DeleteDateColumn({ nullable: true })
-  deletedAt: Date | null | undefined;
+  deletedAt?: string | Date | null | undefined;
 
   @OneToMany(() => Schedule, (schedule) => schedule.user)
   schedules: Schedule[];
