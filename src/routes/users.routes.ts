@@ -1,6 +1,6 @@
 import { Router } from "express";
 import checkEmailExistsMiddlewares from "../middlewares/checkEmailExists.middleware";
-import { createUserController } from "../controllers/createUser.controller";
+import { createUserController } from "../controllers/user/createUser.controller";
 import checkBodyValidationMiddleware from "../middlewares/checkBodyValidation.middleware";
 import { requestUserSchema } from "../schemas/users.schemas";
 

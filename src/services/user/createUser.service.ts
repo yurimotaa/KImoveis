@@ -1,14 +1,14 @@
 import { Repository } from "typeorm";
-import { TUserRequest, TUserResponse } from "../interfaces/users.interfaces";
+import { TUserRequest, TUserResponse } from "../../interfaces/users.interfaces";
 import * as bcrypt from "bcryptjs";
-import { User } from "../entities";
-import { AppDataSource } from "../data-source";
-import { responseUserSchema } from "../schemas/users.schemas";
+import { User } from "../../entities";
+import { AppDataSource } from "../../data-source";
+import { responseUserSchema } from "../../schemas/users.schemas";
 
 const createUserService = async (
   userData: TUserRequest
 ): Promise<TUserResponse> => {
-  userData.password = await bcrypt.hash(userData.password, 10);
+  /*   userData.password = await bcrypt.hash(userData.password, 10); */
   if (!("admin" in userData)) {
     userData.admin = false;
   }

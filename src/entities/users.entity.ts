@@ -1,4 +1,6 @@
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -8,6 +10,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import Schedule from "./schedules.entity";
+import { getRounds, hashSync } from "bcryptjs";
 
 @Entity("users")
 class User {
@@ -37,6 +40,18 @@ class User {
 
   @OneToMany(() => Schedule, (schedule) => schedule.user)
   schedules: Schedule[];
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  hashPassword() {
+    // getRounds validando se a senha já não foi criptografada antes devido ao update
+    const isEncrypted: number = getRounds(this.password);
+
+    if (!isEncrypted) {
+      // Adicionando ao objeto que irá para o banco a senha criptografada
+      this.password = hashSync(this.password, 10);
+    }
+  }
 }
 
 export default User;
