@@ -6,9 +6,9 @@ const userSchema = z.object({
   email: z.string().email().max(45),
   password: z.string().max(120),
   admin: z.boolean().optional(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
-  deletedAt: z.date().optional().nullish(),
+  createdAt: z.string(),
+  updatedAt: z.string().nullish(),
+  deletedAt: z.string().nullish(),
 });
 
 const requestUserSchema = userSchema.omit({
@@ -20,4 +20,6 @@ const requestUserSchema = userSchema.omit({
 
 const responseUserSchema = userSchema.omit({ password: true });
 
-export { requestUserSchema, responseUserSchema, userSchema };
+const usersArraySchema = z.array(responseUserSchema);
+
+export { requestUserSchema, responseUserSchema, userSchema, usersArraySchema };

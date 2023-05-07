@@ -29,11 +29,11 @@ class User {
   @Column({ type: "boolean", default: false })
   admin?: boolean | undefined;
 
-  @CreateDateColumn()
-  createdAt: Date;
+  @CreateDateColumn({ type: "date" })
+  createdAt: string | Date;
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+  @UpdateDateColumn({ type: "date" })
+  updatedAt: string | Date;
 
   @DeleteDateColumn({ nullable: true })
   deletedAt?: string | Date | null | undefined;
