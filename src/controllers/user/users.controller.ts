@@ -8,7 +8,7 @@ import { TUserResponse } from "../../interfaces/users.interfaces";
 import createUserService from "../../services/user/createUser.service";
 import getAllUsersService from "../../services/user/getAllUsers.service";
 import updateUserService from "../../services/user/updateUser.service";
-import deleteUserService from "../../services/user/deleteUserService";
+import deleteUserService from "../../services/user/deleteUser.service";
 
 const createUserController = async (
   request: Request,
