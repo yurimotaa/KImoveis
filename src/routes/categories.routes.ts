@@ -6,6 +6,7 @@ import checkCategoryExistsMiddleware from "../middlewares/checkCategoryExists.mi
 import {
   createCategoryController,
   getAllCategoriesController,
+  listAllPropertiesInTheCategoryController,
 } from "../controllers/categories/categories.controller";
 
 const categoriesRoutes: Router = Router();
@@ -19,5 +20,10 @@ categoriesRoutes.post(
 );
 
 categoriesRoutes.get("", getAllCategoriesController);
+
+categoriesRoutes.get(
+  "/:id/realEstate",
+  listAllPropertiesInTheCategoryController
+);
 
 export default categoriesRoutes;
