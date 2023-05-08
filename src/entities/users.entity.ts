@@ -27,7 +27,7 @@ class User {
   password: string;
 
   @Column({ type: "boolean", default: false })
-  admin?: boolean | undefined;
+  admin: boolean;
 
   @CreateDateColumn({ type: "date" })
   createdAt: string | Date;

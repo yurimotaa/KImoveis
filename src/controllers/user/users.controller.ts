@@ -1,8 +1,14 @@
 import { Request, Response } from "express";
-import { TUserRequest } from "../../interfaces/users.interfaces";
+import {
+  TUser,
+  TUserRequest,
+  TUserUpdate,
+} from "../../interfaces/users.interfaces";
 import { TUserResponse } from "../../interfaces/users.interfaces";
 import createUserService from "../../services/user/createUser.service";
 import getAllUsersService from "../../services/user/getAllUsers.service";
+import updateUserService from "../../services/user/updateUser.service";
+import deleteUserService from "../../services/user/deleteUserService";
 
 const createUserController = async (
   request: Request,
@@ -25,4 +31,33 @@ const getAllUsersController = async (
   return response.status(200).json(users);
 };
 
-export { createUserController, getAllUsersController };
+const updateUserController = async (
+  request: Request,
+  response: Response
+): Promise<Response | void> => {
+  const isAdmin: boolean = response.locals.userAdmin;
+  const tokenId: number = response.locals.userId;
+  const userData: TUserUpdate = request.body;
+  const userId: number = parseInt(request.params.id);
+
+  const newUser = await updateUserService(isAdmin, tokenId, userData, userId);
+
+  return response.status(200).json(newUser);
+};
+
+const deleteUserController = async (
+  request: Request,
+  response: Response
+): Promise<Response | void> => {
+  const userId: number = parseInt(request.params.id);
+  const isAdmin: boolean = response.locals.userAdmin;
+  await deleteUserService(userId, isAdmin);
+  return response.status(204).send();
+};
+
+export {
+  createUserController,
+  getAllUsersController,
+  updateUserController,
+  deleteUserController,
+};
