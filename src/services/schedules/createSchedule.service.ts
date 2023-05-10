@@ -21,7 +21,6 @@ const createScheduleService = async (
   if (!realEstate) {
     throw new AppError("RealEstate not found", 404);
   }
-  console.log(payload);
 
   // Verifica se já existe um agendamento com a mesma data e hora no mesmo imovel
   const existingSchedule = await scheduleRepo
@@ -35,7 +34,7 @@ const createScheduleService = async (
       }
     )
     .getOne();
-  console.log(existingSchedule);
+
   if (existingSchedule) {
     throw new AppError(
       "Schedule to this real estate at this date and time already exists",
