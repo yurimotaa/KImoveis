@@ -40,7 +40,7 @@ class RealEstate {
   @ManyToOne(() => Category, (category) => category.realEstates)
   category: Category;
 
-  @OneToMany(() => Schedule, (schedule) => schedule.realEstates)
+  @OneToMany(() => Schedule, (schedule) => schedule.realEstate)
   schedules: Schedule[];
 }
 

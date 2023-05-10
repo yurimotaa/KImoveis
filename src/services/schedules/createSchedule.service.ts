@@ -27,7 +27,7 @@ const createScheduleService = async (
   const existingSchedule = await scheduleRepo
     .createQueryBuilder("schedule")
     .where(
-      "schedule.date = :date AND schedule.hour = :hour AND schedule.realEstatesId = :realEstateId",
+      "schedule.date = :date AND schedule.hour = :hour AND schedule.realEstate.id = :realEstateId",
       {
         date: payload.date,
         hour: payload.hour,
@@ -80,7 +80,7 @@ const createScheduleService = async (
   const newSchedule = scheduleRepo.create({
     date: payload.date,
     hour: payload.hour,
-    realEstates: { id: payload.realEstateId },
+    realEstate: { id: payload.realEstateId },
     user: { id: tokenId },
   });
 
