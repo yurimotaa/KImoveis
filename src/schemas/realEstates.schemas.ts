@@ -15,15 +15,4 @@ const realEstateSchemaRequest = z.object({
   categoryId: z.number(),
 });
 
-const realEstateSchemaResponse = z.object({
-  id: z.number(),
-  value: z.number().default(0).or(z.string().default("0")),
-  size: z.number(),
-  address: addressSchema,
-  categoryId: z.number(),
-  sold: z.boolean().default(false),
-  createdAt: z.string(),
-  updatedAt: z.string().nullish(),
-});
-
-export { realEstateSchemaRequest, addressSchema, realEstateSchemaResponse };
+export { realEstateSchemaRequest, addressSchema };

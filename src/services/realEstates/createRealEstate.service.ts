@@ -4,14 +4,13 @@ import { AppError } from "../../error";
 import {
   TAddress,
   TRealEstateRequest,
-  TRealEstateResponse,
 } from "../../interfaces/realEstate.interfaces";
 import { AppDataSource } from "../../data-source";
 
 const createRealEstateService = async (
   payload: TRealEstateRequest,
   isAdmin: boolean
-): Promise<any> => {
+): Promise<RealEstate> => {
   if (!isAdmin) {
     throw new AppError("Insufficient permission", 403);
   }
