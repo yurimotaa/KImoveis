@@ -2,11 +2,12 @@ import { Repository } from "typeorm";
 import { RealEstate, Schedule } from "../../entities";
 import { AppDataSource } from "../../data-source";
 import { AppError } from "../../error";
+import { IScheduleResponse } from "../../interfaces/schedules.interfaces";
 
 const getAllSchedulesByEstateIdService = async (
   isAdmin: boolean,
   realEstateId: number
-): Promise<any> => {
+): Promise<IScheduleResponse> => {
   if (!isAdmin) {
     throw new AppError("Insufficient permission", 403);
   }
@@ -27,7 +28,7 @@ const getAllSchedulesByEstateIdService = async (
     AppDataSource.getRepository(Schedule);
 
   const schedules = await schedulesRepo.find({
-    where: { realEstate: { id: realEstate.id } },
+    where: { realEstate: { id: realEstateId } },
     relations: ["user"],
   });
 

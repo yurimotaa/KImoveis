@@ -1,5 +1,8 @@
 import { Repository } from "typeorm";
-import { TScheduleRequest } from "../../interfaces/schedules.interfaces";
+import {
+  IMessageReturn,
+  TScheduleRequest,
+} from "../../interfaces/schedules.interfaces";
 import { RealEstate, Schedule } from "../../entities";
 import { AppDataSource } from "../../data-source";
 import { AppError } from "../../error";
@@ -7,7 +10,7 @@ import { AppError } from "../../error";
 const createScheduleService = async (
   tokenId: number,
   payload: TScheduleRequest
-): Promise<any> => {
+): Promise<IMessageReturn> => {
   const realEstateRepo = AppDataSource.getRepository(RealEstate);
 
   // Verifica se o imovel existe
