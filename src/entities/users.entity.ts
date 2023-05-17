@@ -49,7 +49,7 @@ class User {
 
     if (!isEncrypted) {
       // Adicionando ao objeto que irá para o banco a senha criptografada
-      this.password = hashSync(this.password, 10);
+      this. password= hashSync(this.password, 10);
     }
   }
 }
